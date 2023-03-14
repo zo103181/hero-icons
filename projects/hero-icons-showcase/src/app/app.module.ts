@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeroIconsRegistry } from 'projects/hero-icons/src/lib/hero-icons-registry.service';
-import { heroIconsAcademicCap, HeroIconsModule } from 'projects/hero-icons/src/public-api';
+import { HeroIconsModule, heroIconsOutlineAcademicCap, heroIconsSolidAcademicCap } from 'projects/hero-icons/src/public-api';
 
 import { AppComponent } from './app.component';
 
@@ -19,9 +19,9 @@ import { AppComponent } from './app.component';
 export class AppModule {
 
   constructor(private heroIconsRegistry: HeroIconsRegistry) {
-    this.heroIconsRegistry.registerIcons([
-      heroIconsAcademicCap
-    ])
+    this.heroIconsRegistry.registerIcons({
+      heroIconsOutlineAcademicCap
+    });
   }
 
 }
