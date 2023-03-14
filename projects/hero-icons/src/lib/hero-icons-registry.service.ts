@@ -3,16 +3,25 @@ import { HeroIcon } from './hero-icons';
 
 @Injectable({ providedIn: 'root' })
 export class HeroIconsRegistry {
-    private registry = new Map<string, string>();
+    private registry: Record<string, HeroIcon> = {};
 
-    public registerIcons(icons: HeroIcon[]): void {
-        icons.forEach((icon: HeroIcon) => this.registry.set(icon.name, icon.data));
+    public registerIcons(icons?: Record<string, HeroIcon>): void {
+        if (icons) {
+            Object.keys(icons).forEach(iconName => {
+                const icon = icons[iconName];
+                const fullIconName = `${icon.name}-${icon.styles}`;
+                this.registry[fullIconName] = icon;
+            });
+        }
     }
 
-    public getIcon(iconName: string): string | undefined {
-        if (!this.registry.has(iconName)) {
-            console.error(`Sorry, we could not find the icon "${iconName}", verify the spelling is correct and the icon was added to the registry.`);
+    public getIcon(iconName: string, styleName: string): string | undefined {
+        const fullIconName = `${iconName}-${styleName}`;
+        const icon = this.registry[fullIconName];
+        if (!icon) {
+            console.error(`Sorry, we could not find the icon "${iconName}" with a style of "${styleName}", verify the spelling is correct and the icon was added to the registry.`);
+            return;
         }
-        return this.registry.get(iconName);
+        return icon.data;
     }
 }
