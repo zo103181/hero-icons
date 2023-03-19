@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeroIconsRegistry } from 'projects/hero-icons/src/lib/hero-icons-registry.service';
-import { HeroIconsModule, heroIconsOutlineAcademicCap, heroIconsSolidAcademicCap } from 'projects/hero-icons/src/public-api';
+import { HeroIconsModule, heroIconsOutlineAcademicCap } from 'projects/hero-icons/src/public-api';
 
 import { AppComponent } from './app.component';
 

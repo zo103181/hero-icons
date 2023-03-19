@@ -36,6 +36,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+projects/hero-icons/icons/*
 
 # System files
 .DS_Store
