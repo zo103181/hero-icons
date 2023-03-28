@@ -1,6 +1,5 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Optional } from '@angular/core';
-import { OUTLINE_KEY, SOLID_KEY } from './hero-icons';
 import { HeroIconsRegistry } from './hero-icons-registry.service';
 
 @Component({
@@ -37,7 +36,15 @@ export class HeroIconsComponent {
 
   private setClass() {
     if (this.svgIcon) {
-      const classes = [this.class || '', this.defaultClass];
+      const currentClasses = (this.class || '').split(' ');
+      const defaultClasses = this.defaultClass.split(' ');
+
+      // Filter out the default classes that are already included in this.class
+      const filteredDefaultClasses = defaultClasses.filter(
+        (defaultClass) => !currentClasses.some((currentClass) => currentClass.startsWith(defaultClass.replace(/-6/g, '-')))
+      );
+
+      const classes = [...currentClasses, ...filteredDefaultClasses];
       this.svgIcon.setAttribute('class', classes.join(' '));
     }
   }
