@@ -30,7 +30,7 @@ export class AppComponent {
   snippets = {
     heroIcon: `<hero-icon 
     name="academic-cap" 
-    styles="outline"></hero-icon>`
+    type="outline"></hero-icon>`
   }
 
   constructor(private renderer: Renderer2) {

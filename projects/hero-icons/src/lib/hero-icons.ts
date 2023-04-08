@@ -6,5 +6,5 @@ export type heroIcon = typeof heroIconArray[number];
 export interface HeroIcon {
     name: heroIcon
     data: string
-    styles?: string
+    type?: string
 }

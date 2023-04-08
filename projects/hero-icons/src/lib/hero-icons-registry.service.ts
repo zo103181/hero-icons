@@ -9,17 +9,17 @@ export class HeroIconsRegistry {
         if (icons) {
             Object.keys(icons).forEach(iconName => {
                 const icon = icons[iconName];
-                const fullIconName = `${icon.name}-${icon.styles}`;
+                const fullIconName = `${icon.name}-${icon.type}`;
                 this.registry[fullIconName] = icon;
             });
         }
     }
 
-    public getIcon(iconName: string, styleName: string): string | undefined {
-        const fullIconName = `${iconName}-${styleName}`;
+    public getIcon(iconName: string, typeName: string): string | undefined {
+        const fullIconName = `${iconName}-${typeName}`;
         const icon = this.registry[fullIconName];
         if (!icon) {
-            console.error(`Sorry, we could not find the icon "${iconName}" with a style of "${styleName}", verify the spelling is correct and the icon was added to the registry.`);
+            console.error(`Sorry, we could not find the icon "${iconName}" with a style of "${typeName}", verify the spelling is correct and the icon was added to the registry.`);
             return;
         }
         return icon.data;

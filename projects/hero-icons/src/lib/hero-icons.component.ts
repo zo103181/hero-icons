@@ -13,7 +13,7 @@ export class HeroIconsComponent {
 
   @Input() name!: string;
   @Input() class?: string;
-  @Input() styles: string | undefined;
+  @Input() type: string | undefined;
   @Input() defaultClass = 'block h-6 w-6';
 
   constructor(
@@ -23,8 +23,8 @@ export class HeroIconsComponent {
   ) { }
 
   ngOnInit() {
-    const styleKey = this.styles ? this.styles : 'unknown-style';
-    const svgData = this.heroIconRegistry.getIcon(this.name, styleKey);
+    const typeKey = this.type ? this.type : 'outline';
+    const svgData = this.heroIconRegistry.getIcon(this.name, typeKey);
     this.svgIcon = this.svgElementFromString(svgData);
     this.setClass();
     this.element.nativeElement.appendChild(this.svgIcon);
