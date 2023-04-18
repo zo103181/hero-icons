@@ -1,7 +1,13 @@
 {
   "name": "twng-hero-icons",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A collection of Hero Icons for Angular",
+  "keywords": [
+    "tailwindcss",
+    "icons",
+    "heroicons",
+    "angular"
+  ],
   "dependencies": {
     "tslib": "^2.3.0"
   }
