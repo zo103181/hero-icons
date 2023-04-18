@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input, Optional, Renderer2 } from '@angular/core';
 import { HeroIconsRegistry } from './hero-icons-registry.service';
 
 @Component({
@@ -15,10 +15,12 @@ export class HeroIconsComponent {
   @Input() class?: string;
   @Input() type: string | undefined;
   @Input() defaultClass = 'block h-6 w-6';
+  @Input() attr: { [key: string]: string } = {};
 
   constructor(
     private element: ElementRef,
     private heroIconRegistry: HeroIconsRegistry,
+    private renderer: Renderer2,
     @Optional() @Inject(DOCUMENT) private document: any
   ) { }
 
@@ -26,12 +28,22 @@ export class HeroIconsComponent {
     const typeKey = this.type ? this.type : 'outline';
     const svgData = this.heroIconRegistry.getIcon(this.name, typeKey);
     this.svgIcon = this.svgElementFromString(svgData);
+    this.setAttributes();
     this.setClass();
     this.element.nativeElement.appendChild(this.svgIcon);
   }
 
   ngOnChanges() {
+    this.setAttributes();
     this.setClass();
+  }
+
+  private setAttributes() {
+    if (this.svgIcon) {
+      Object.keys(this.attr).forEach((key) => {
+        this.renderer.setProperty(this.svgIcon, key, this.attr[key]);
+      });
+    }
   }
 
   private setClass() {
@@ -45,7 +57,7 @@ export class HeroIconsComponent {
       );
 
       const classes = [...currentClasses, ...filteredDefaultClasses];
-      this.svgIcon.setAttribute('class', classes.join(' '));
+      this.renderer.setAttribute(this.svgIcon, 'class', classes.join(' '));
     }
   }
 

@@ -122,7 +122,8 @@
             <div *ngFor="let icon of availableHeroIcons"
                 class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
                 <div class="flex-shrink-0">
-                    <hero-icon [name]="icon" class="h-20 w-20 text-gray-600 justify-center" type="outline"></hero-icon>
+                    <hero-icon [name]="icon" class="h-20 w-20 text-gray-600 justify-center" type="outline"
+                        [attr.aria-label]="icon"></hero-icon>
                 </div>
                 <div class="min-w-0 flex-1">
                     <a routerLink="" (click)="onPreviewIcon(icon)" class="focus:outline-none cursor-pointer">

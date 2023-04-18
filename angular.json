@@ -12,6 +12,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
+            "tsConfig": "projects/hero-icons/tsconfig.lib.json",
             "project": "projects/hero-icons/ng-package.json"
           },
           "configurations": {
